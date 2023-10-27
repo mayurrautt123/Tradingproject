@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload CSV File</title>
+</head>
+<body>
+    <h1>Upload CSV File</h1>
+    
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Download Json Data</button>
+    </form>
+
+    {% if csv_data %}
+    <h2>Uploaded Data</h2>
+    <table>
+        <!-- Display the uploaded data -->
+    </table>
+    {% endif %}
+    
+    {% if aggregated_data %}
+    <h2>Aggregated Data (10-Minute Intervals)</h2>
+    <p>
+        <!-- Display the aggregated data in the desired format -->
+    </p>
+    
+    <h2>Aggregated Data (JSON)</h2>
+    <pre>
+        {{ aggregated_data_json }}
+    </pre>
+    
+    <a href="{{ json_download_url }}" download="aggregated_data.json">
+        <button>Download JSON</button>
+    </a>
+    {% endif %}
+</body>
+</html>
